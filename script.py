@@ -3,11 +3,9 @@ from requests import get
 from sys import argv
 
 if not "--help" in argv:
+	
 	URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgxtRuvH2J_wEy2Khiq8i_Yy_LzYy9yvDs9i1ixUFW8oVK9wOhAW9_M42wo1JVvGmaYFegPqVF4oIE/pubhtml?gid=1544454712&single=true"
-
 	page = get(URL)
-
-
 	soup = BeautifulSoup(page.text, "html.parser")
 	result = []
 
@@ -18,14 +16,14 @@ if not "--help" in argv:
 			self._year = year
 			self._admission = admission
 			self._level = level
-			self._solved_problems = sorted(solved_problems)
+			self._solved_problems = solved_problems
 
 		def equal_to_another_student(self, another_student):
 			same_city = self._city == another_student._city if self._city != "any" else True
 			same_year = self._year == another_student._year if self._year != "any" else True
 			same_admission = self._admission == another_student._admission if self._admission != "any" else True
 			same_level = self._level == another_student._level if self._level != "any" else True
-			same_solved_problems = self._solved_problems == another_student._solved_problems if self._solved_problems != sorted("any") else True
+			same_solved_problems = self._solved_problems == another_student._solved_problems if self._solved_problems != "any" else True
 
 			return same_city and same_year and same_admission and same_level and same_solved_problems
 
